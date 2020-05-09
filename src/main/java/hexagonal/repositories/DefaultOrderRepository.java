@@ -1,7 +1,7 @@
-package domainpattern.repositories;
+package hexagonal.repositories;
 
-import domainpattern.domain.order.Order;
-import domainpattern.domain.order.OrderRepository;
+import hexagonal.domain.order.Order;
+import hexagonal.domain.order.OrderRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository

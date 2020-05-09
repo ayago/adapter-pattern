@@ -1,4 +1,4 @@
-package domainpattern.domain.order;
+package hexagonal.domain.order;
 
 public enum ComponentStatus {
     NEW,

@@ -1,8 +1,8 @@
-package domainpattern.api;
+package hexagonal.api;
 
-import domainpattern.domain.order.NewOrderCommand;
-import domainpattern.domain.order.NewOrderCommand.OrderedItem;
-import domainpattern.domain.order.OrderService;
+import hexagonal.domain.order.NewOrderCommand;
+import hexagonal.domain.order.NewOrderCommand.OrderedItem;
+import hexagonal.domain.order.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

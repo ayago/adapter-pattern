@@ -1,11 +1,11 @@
 
-# Adapter Pattern/Hexagonal Demonstration Project
+# Hexagonal Architecture Demonstration Project
 
-This is a sample spring boot project which shows how to isolate the domain layer
-from the http and database adapters.  We want to isolate the domain layer so that we can decouple
-it from the application or infrastructure. 
+This is a sample spring boot project which demonstrates how we can use Hexagonal Architecture (aka 
+Ports and Adapters pattern) to isolate the domain layer from the http and database adapters.  We want to 
+isolate to use this pattern so that we can decouple the domain from the application or infrastructure. 
 
-## Adapter Pattern/Hexagonal
+## Project implementation
 
 The project is separated by three packages:
 

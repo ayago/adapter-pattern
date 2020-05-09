@@ -1,4 +1,4 @@
-package domainpattern.domain.order;
+package hexagonal.domain.order;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Max;

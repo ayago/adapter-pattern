@@ -1,4 +1,4 @@
-package domainpattern.api;
+package hexagonal.api;
 
 import org.apache.commons.lang3.StringUtils;
 

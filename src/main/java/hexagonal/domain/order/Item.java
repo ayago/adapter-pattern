@@ -1,4 +1,4 @@
-package domainpattern.domain.order;
+package hexagonal.domain.order;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
