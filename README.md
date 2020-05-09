@@ -26,7 +26,7 @@ on the domain at Service layer
 ## How to play with the project
 
 1. Build the gradle project using the wrapper included
-2. Run the app using the main class `DomainPatternApplication`
+2. Run the app using the main class `HexagonalApplication`
 3. Send post request to `http://localhost:8080/api/orders` using the following
 request body 
 
@@ -61,6 +61,16 @@ request body
     ]
 }
 `
+
+## Opportunities from using this approach
+
+Some opportunities we can get from using the Hexagonal Architecture are as follows:
+
+1. Can use different http adapter implementation such as using Jersey instead of
+spring without affecting the business logic.
+2. Can use a different database without affecting the business logic.
+3. Can ensure that changes in business logic will be enforced on different adapters.
+4. Can use different adapters such as Kafka for an event driven approach
 
 ## Improvements
 
