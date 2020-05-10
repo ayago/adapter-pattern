@@ -1,7 +1,8 @@
 package hexagonal.domain.order;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -87,7 +88,7 @@ public class NewOrderCommand {
 
     public static class OrderedItem {
 
-        @Max(100)
+        @Length(max=100)
         final String notes;
 
         @NotBlank
