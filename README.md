@@ -9,7 +9,7 @@ use this pattern so that we can decouple the domain from the application or infr
 
 The project is separated by three packages:
 
-* API - the http adapter layer
+* API - the layer that exposes the service for use
 * Repositories - the database adapter layer
 * Domain - the domain layer which contains the beans and objects to enforce a business transaction
 
@@ -25,26 +25,27 @@ on the domain at Service layer
 
 ## How to play with the project
 
-1. Build the gradle project using the wrapper included
-2. Run the app using the main class `HexagonalApplication`
+1. Build the gradle project using the wrapper included (e.g. `./gradlew build`)
+2. Run the app using the main class `HexagonalApplication` or 
+use the wrapper (`./gradlew bootRun`)
 3. Send post request to `http://localhost:8080/api/orders` using the following
 request body 
 
-`
+```
 {
 	"orderedItems": [
 		{
-			"notes": "gdsadsadjasgdjsagjdsajdgsajdgsajdgsajgdjsagdjsagdjasgdjsagdjasgj",
+			"notes": "gdsadsadjasgdjsagjdsajdgsajdgsajdgsajgdjsagdjsagdjasgdjsagdjasgdsadsadsadsadsadsadsadsajdsdsdsdsdsdsdsds",
 			"itemCode": 12345,
 			"quantity": -1
 		}
 	]
 }
-`
+```
 
 4. You should be able to get an HTTP 422 error response with body
 
-`
+```
 {
     "message": "Cannot process request with field violations",
     "fieldErrors": [
@@ -54,13 +55,13 @@ request body
             "message": "must be greater than or equal to 1"
         },
         {
-            "field": "command.orderedItems[0].notes",
-            "code": "{javax.validation.constraints.Max.message}",
-            "message": "must be less than or equal to 100"
+             "field": "command.orderedItems[0].notes",
+             "code": "{org.hibernate.validator.constraints.Length.message}",
+             "message": "length must be between 0 and 100"
         }
     ]
 }
-`
+```
 
 ## Opportunities from using this approach
 
@@ -88,6 +89,26 @@ In this project, the adapters that are implemented as required by the domain are
 1. Repositories
 2. Rest Controllers
 
+## Conclusion
+
+To begin a spring boot app that follows hexagonal architecture we must do the following
+
+1. The domain should not depend on the adapters. The adapters should depend on the domain.
+
+2. If we want to use jsr303 validation, we can start by moving the necessary validations on the
+service and command objects of the domain package. We should annotate the service with @Service 
+and @Validated so that spring can execute the underlying JSR303 support on method level of the 
+service.
+
+3. We should use interfaces on Repositories required by our domain so that we can decouple its
+implementation
+
+In addition, if we are using DDD, the following should be the only access point of the adapters 
+exposing the domain (e.g. the APIs)
+
+1. Service to enforce the transaction
+2. Command Objects as parameters
+
 ## Improvements
 
 1. Totally isolate the domain layer by moving the domain packages on a separate gradle project without
@@ -98,3 +119,5 @@ such as Vert.x, Akka, Jakarta, etc.
 enforces the transaction invariant
 
 3. Add unit tests
+
+4. Improve sample repository implementations by mapping it on actual db
