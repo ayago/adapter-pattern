@@ -3,7 +3,7 @@
 
 This is a sample spring boot project which demonstrates how we can use Hexagonal Architecture (aka 
 Ports and Adapters pattern) to isolate the domain layer from the http and database adapters.  We want to 
-isolate to use this pattern so that we can decouple the domain from the application or infrastructure. 
+use this pattern so that we can decouple the domain from the application or infrastructure. 
 
 ## Project implementation
 
@@ -72,10 +72,29 @@ spring without affecting the business logic.
 3. Can ensure that changes in business logic will be enforced on different adapters.
 4. Can use different adapters such as Kafka for an event driven approach
 
+## Domain Driven Design (DDD)
+
+Hexagonal Architecture is a natural fit to DDD. Using the former allows the DDD
+service to be exposed to different adapters such as REST, SOAP without affecting the
+internals of the service. In addition, the Repositories needed by the services can be 
+updated without affecting the business logic. This gives us an opportunity to scale or 
+change the underlying db without worries of affecting the domain. However, it should be 
+noted that we still need to ensure that the underlying repository should work accordingly
+since these are responsible for restoring the state of the domain aggregate and as well
+as saving the state of the aggregate.
+
+In this project, the adapters that are implemented as required by the domain are
+
+1. Repositories
+2. Rest Controllers
+
 ## Improvements
 
 1. Totally isolate the domain layer by moving the domain packages on a separate gradle project without
-any dependencies to spring boot
+any dependencies to spring boot. By doing this, the domain can still be exposed using other frameworks
+such as Vert.x, Akka, Jakarta, etc.
+
 2. Move @Valid on to aggregate (e.g. Order) from service (e.g. OrderService) so that the aggregate fully
 enforces the transaction invariant
+
 3. Add unit tests
